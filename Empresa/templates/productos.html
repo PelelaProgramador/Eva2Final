@@ -1,0 +1,35 @@
+<body class="container mt-5">
+    <div class="alert alert-success display-1">LISTADO DE PRODUCTOS</div>
+
+    {%if productos %}
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Nombre</th>
+                <th>Litro</th>
+                <th>Tamaño</th>
+                <th>Precio</th>
+                <th>Proveedor</th>
+                <th>Tipo de Agua</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for prod in productos %}
+            <tr>
+                <td scope="row">{{prod.id}}</td>
+                <td>{{prod.nombre}}</td>
+                <td>{{prod.litro}}</td>
+                <td>{{prod.tamanio}}</td>
+                <td>{{prod.precio}}</td>
+                <td>{{prod.proveedor}}</td>
+                <td>{{prod.tipoagua}}</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+    {% else %}
+        <div class="alert alert-info">No hay Productos</div>
+    {% endif%}
+</body>

@@ -1,0 +1,11 @@
+<body class ="container mt-5">
+    <div class="alert alert-info display-1 text-center">Registrar Productos</div>
+
+    <form method="POST">
+        {{ form.as_p }}
+        {% csrf_token %}
+        <input type="submit" class="btn btn-info" value="ENVIAR">
+    </form>
+
+
+</body>
