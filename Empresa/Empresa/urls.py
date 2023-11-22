@@ -17,20 +17,31 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path
 
-from AppEmpresa import views 
-from AppEmpresa.views import renderTemplate
-from AppEmpresa.views import productoRegistrationView
+from AppEmpresa import views as app1
+from Personal import views as app2
+from Transporte import views as app3
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('render/', renderTemplate),
-    path("hola/", views.display),
-    path("ahora/", views.displayDateTime),
-    path("productos/", views.productoData),
+    path('render/', app1.renderTemplate),
+    path("hola/", app1.display),
+    path("ahora/", app1.displayDateTime),
+    path("productos/", app1.productoData),
     #path("", productoRegistrationView),
-    path('', views.index),
-    path('producto/', views.listadoProductos),
-    path('agregarProducto/', views.agregarProducto),
-    path('eliminarProducto/<int:id>', views.eliminarProducto),
-    path('actualizarProducto/<int:id>', views.actualizarProducto),
+    path('', app1.index),
+    path('producto/', app1.listadoProductos),
+    path('agregarProducto/', app1.agregarProducto),
+    path('eliminarProducto/<int:id>', app1.eliminarProducto),
+    path('actualizarProducto/<int:id>', app1.actualizarProducto),
+    # Rutas de la aplicación Personal
+    path('personal/', app2.listadoPersonal, name='listado_personal'),
+    path('agregarpersonal/', app2.agregarPersonal, name='agregar_personal'),
+    path('eliminarpersonal/<int:id>/', app2.eliminarPersonal, name='eliminar_personal'),
+    path('actualizarpersonal/<int:id>/', app2.actualizarPersonal, name='actualizar_personal'),
+
+    # Rutas de la aplicación Transporte
+    path('transportes/', app3.listadoTransportes, name='listado_transportes'),
+    path('agregartransporte/', app3.agregarTransporte, name='agregar_transporte'),
+    path('eliminartransporte/<int:id>/', app3.eliminarTransporte, name='eliminar_transporte'),
+    path('actualizartransporte/<int:id>/', app3.actualizarTransporte, name='actualizar_transporte'),
 ]

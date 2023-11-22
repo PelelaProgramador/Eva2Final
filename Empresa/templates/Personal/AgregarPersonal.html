@@ -1,0 +1,11 @@
+<body class="container mt-5">
+    <div class="alert alert-info display-1 text-center">AGREGAR PERSONAL</div>
+
+    <form method="post">
+        {{ form.as_p }}
+        {% csrf_token %}
+        <input type="submit" value="AGREGAR PERSONAL" class="btn btn-info">
+    </form>
+
+    <a href="../personal" class="btn btn-info">PERSONAL</a>
+</body>

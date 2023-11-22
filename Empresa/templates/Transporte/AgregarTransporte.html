@@ -1,0 +1,11 @@
+<body class="container mt-5">
+    <div class="alert alert-info display-1 text-center">AGREGAR TRANSPORTE</div>
+
+    <form method="post">
+        {{ form.as_p }}
+        {% csrf_token %}
+        <input type="submit" value="AGREGAR TRANSPORTE" class="btn btn-info">
+    </form>
+
+    <a href="../transportes" class="btn btn-info">TRANSPORTE</a>
+</body>

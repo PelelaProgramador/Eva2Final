@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lista de Personal</title>
+</head>
+<body>
+    <div class="alert alert-info display-1 text-center">LISTADO DE PERSONAL</div>
+
+    {% if personales %}
+
+    <table class="table table-striped table-inverse table-responsive">
+        <thead class="thead-inverse">
+            <tr>
+                <th>Nombre</th>
+                <th>Cargo</th>
+                <th>Edad</th>
+                <th>Experiencia</th>
+                <th>Teléfono</th>
+                <th>Email</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for persona in personales %}
+            <tr>
+                <td>{{ persona.nombre }}</td>
+                <td>{{ persona.cargo }}</td>
+                <td>{{ persona.edad }}</td>
+                <td>{{ persona.experiencia }}</td>
+                <td>{{ persona.telefono }}</td>
+                <td>{{ persona.email }}</td>
+                <td>
+                    <a href="/actualizarpersonal/{{ persona.id }}" class="btn btn-success btn-sm"><i class="bi bi-pencil"></i> Actualizar</a>
+                    <a href="/eliminarpersonal/{{ persona.id }}" class="btn btn-danger btn-sm"><i class="bi bi-trash"></i> Eliminar</a>
+                </td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+
+    {% else %}
+
+    <div class="alert alert-primary" role="alert">
+        <strong>No se encuentran personas en el sistema</strong>
+    </div>
+
+    {% endif %}
+
+    <a href="../" class="btn btn-danger">VOLVER</a>
+    <a href="../agregarpersonal" class="btn btn-info float-end">AGREGAR PERSONAL</a>
+</body>
+</html>

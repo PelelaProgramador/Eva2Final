@@ -24,7 +24,7 @@ def renderTemplate(request):
 def productoData(request):
     productos = producto.objects.all()
     data = {'productos' : productos}
-    return render(request, 'productos.html', data)
+    return render(request, 'producto/productos.html', data)
 
 def productoRegistrationView(request):
     form = forms.productoRegistrationForm()
@@ -41,7 +41,7 @@ def productoRegistrationView(request):
             print("Tipo de agua: ", form.cleaned_data['tipoagua'])
             
     data = {'form' : form}
-    return render(request,'productoRegistration.html', data)
+    return render(request,'producto/productoRegistration.html', data)
 
 def index(request):
     return render (request, 'index.html')
@@ -49,17 +49,27 @@ def index(request):
 def listadoProductos(request):
     productos = producto.objects.all()
     data = {'productos': productos}
-    return render(request, 'producto.html', data)
+    return render(request, 'producto/producto.html', data)
 
 def agregarProducto(request):
     form = Formproducto()
-    if request.method == 'POST' :
+
+    if request.method == 'POST':
         form = Formproducto(request.POST)
-        if form.is_valid() :
-            form.save()
-        return index(request)
-    data = {'form' : form}
-    return render(request, 'agregarProducto.html', data)
+        if form.is_valid():
+            producto = form.save(commit=False)
+
+            # Obtén el transporte seleccionado del formulario
+            transporte_seleccionado = form.cleaned_data['transporte']
+
+            # Asigna el transporte al producto
+            producto.transporte = transporte_seleccionado
+            producto.save()
+
+            return redirect('index')
+
+    data = {'form': form}
+    return render(request, 'producto/agregarProducto.html', data)
 
 def eliminarProducto(request, id):
     Producto = producto.objects.get(id = id)
@@ -75,4 +85,4 @@ def actualizarProducto(request, id):
             form.save()
         return index(request)
     data = {'form' : form}
-    return render(request, 'agregarProducto.html', data)
+    return render(request, 'producto/agregarProducto.html', data)

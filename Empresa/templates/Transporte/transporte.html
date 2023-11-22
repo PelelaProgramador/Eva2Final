@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lista de Transportes</title>
+</head>
+<body>
+    <div class="alert alert-info display-1 text-center">LISTADO DE TRANSPORTES</div>
+
+    {% if transportes %}
+
+    <table class="table table-striped table-inverse table-responsive">
+        <thead class="thead-inverse">
+            <tr>
+                <th>Nombre</th>
+                <th>Modelo</th>
+                <th>Capacidad</th>
+                <th>Fecha de Fabricación</th>
+                <th>Estado</th>
+                <th>Costo de Mantenimiento</th>
+                <!-- Añadir más columnas según sea necesario -->
+            </tr>
+        </thead>
+        <tbody>
+            {% for transporte in transportes %}
+            <tr>
+                <td>{{ transporte.nombre }}</td>
+                <td>{{ transporte.modelo }}</td>
+                <td>{{ transporte.capacidad }}</td>
+                <td>{{ transporte.fecha_fabricacion }}</td>
+                <td>{{ transporte.estado }}</td>
+                <td>{{ transporte.costo_mantenimiento }}</td>
+                <td>
+                    <a href="/actualizartransporte/{{ transporte.id }}" class="btn btn-success btn-sm"><i class="bi bi-pencil"></i> Actualizar</a>
+                    <a href="/eliminartransporte/{{ transporte.id }}" class="btn btn-danger btn-sm"><i class="bi bi-trash"></i> Eliminar</a>
+                </td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+
+    {% else %}
+
+    <div class="alert alert-primary" role="alert">
+        <strong>No se encuentran transportes en el sistema</strong>
+    </div>
+
+    {% endif %}
+
+    <a href="../" class="btn btn-danger">VOLVER</a>
+    <a href="../agregartransporte" class="btn btn-info float-end">AGREGAR TRANSPORTE</a>
+</body>
+</html>
